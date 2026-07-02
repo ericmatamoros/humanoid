@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Humanoid is a 3,333 supply NFT collection of agentic humanoids."
+    />
+    <title>Humanoid | Whitelist</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="landing" id="landing">
+      <header class="topbar" aria-label="Primary">
+        <a class="brand" href="/" aria-label="Humanoid home">
+          <picture class="brand-logo" aria-hidden="true">
+            <source srcset="assets/humanoid-logo.webp" type="image/webp" />
+            <img src="assets/humanoid-logo.png" alt="" />
+          </picture>
+          <span>Humanoid</span>
+        </a>
+
+        <button class="wallet-chip" id="headerWallet" type="button">
+          <span class="wallet-icon" aria-hidden="true"></span>
+          <span>Connect</span>
+        </button>
+      </header>
+
+      <section class="hero" aria-labelledby="hero-title">
+        <h1 id="hero-title">Humanoid</h1>
+
+        <div class="hero-art" aria-hidden="true">
+          <picture>
+            <source srcset="assets/humanoid-black-visor.webp" type="image/webp" />
+            <img src="assets/humanoid-black-visor.png" alt="" fetchpriority="high" />
+          </picture>
+        </div>
+
+        <div class="hero-panel">
+          <p>
+            3333 humanoids with agentic traits coming to build a world where
+            surrender is quiet and automation has a face.
+          </p>
+
+          <div class="mint-line" aria-label="Mint details">
+            <span>Supply 3333</span>
+            <span>Mint TBD</span>
+            <span>ETH chain</span>
+          </div>
+
+          <button class="whitelist-button" id="openWhitelist" type="button">
+            Join whitelist
+            <img src="assets/arrow-orbit.svg" alt="" aria-hidden="true" />
+          </button>
+        </div>
+      </section>
+
+      <section class="art-carousel" aria-label="Humanoid art previews">
+        <div class="carousel-header">
+          <p>First arrivals</p>
+          <span>Agentic traits revealed by rarity</span>
+        </div>
+
+        <div class="carousel-window">
+          <div class="carousel-track">
+            <figure class="carousel-card">
+              <picture>
+                <source srcset="assets/humanoid-black-visor.webp" type="image/webp" />
+                <img src="assets/humanoid-black-visor.png" alt="Black visor humanoid artwork" />
+              </picture>
+              <figcaption>Vanguard</figcaption>
+            </figure>
+            <figure class="carousel-card">
+              <picture>
+                <source srcset="assets/humanoid-paper-agent.webp" type="image/webp" />
+                <img src="assets/humanoid-paper-agent.png" alt="Paper shell humanoid artwork" />
+              </picture>
+              <figcaption>Proxy</figcaption>
+            </figure>
+            <figure class="carousel-card">
+              <picture>
+                <source srcset="assets/humanoid-cartographer-agent.webp" type="image/webp" />
+                <img src="assets/humanoid-cartographer-agent.png" alt="Cartographer humanoid artwork" />
+              </picture>
+              <figcaption>Cartographer</figcaption>
+            </figure>
+            <figure class="carousel-card">
+              <picture>
+                <source srcset="assets/humanoid-medic-agent.webp" type="image/webp" />
+                <img src="assets/humanoid-medic-agent.png" alt="Medic humanoid artwork" />
+              </picture>
+              <figcaption>Medic</figcaption>
+            </figure>
+            <figure class="carousel-card">
+              <picture>
+                <source srcset="assets/humanoid-signal-agent.webp" type="image/webp" />
+                <img src="assets/humanoid-signal-agent.png" alt="Signal humanoid artwork" />
+              </picture>
+              <figcaption>Signal</figcaption>
+            </figure>
+            <figure class="carousel-card" aria-hidden="true">
+              <picture>
+                <source srcset="assets/humanoid-black-visor.webp" type="image/webp" />
+                <img src="assets/humanoid-black-visor.png" alt="" />
+              </picture>
+              <figcaption>Vanguard</figcaption>
+            </figure>
+            <figure class="carousel-card" aria-hidden="true">
+              <picture>
+                <source srcset="assets/humanoid-paper-agent.webp" type="image/webp" />
+                <img src="assets/humanoid-paper-agent.png" alt="" />
+              </picture>
+              <figcaption>Proxy</figcaption>
+            </figure>
+            <figure class="carousel-card" aria-hidden="true">
+              <picture>
+                <source srcset="assets/humanoid-cartographer-agent.webp" type="image/webp" />
+                <img src="assets/humanoid-cartographer-agent.png" alt="" />
+              </picture>
+              <figcaption>Cartographer</figcaption>
+            </figure>
+            <figure class="carousel-card" aria-hidden="true">
+              <picture>
+                <source srcset="assets/humanoid-medic-agent.webp" type="image/webp" />
+                <img src="assets/humanoid-medic-agent.png" alt="" />
+              </picture>
+              <figcaption>Medic</figcaption>
+            </figure>
+            <figure class="carousel-card" aria-hidden="true">
+              <picture>
+                <source srcset="assets/humanoid-signal-agent.webp" type="image/webp" />
+                <img src="assets/humanoid-signal-agent.png" alt="" />
+              </picture>
+              <figcaption>Signal</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="whitelist-modal" id="whitelistModal" aria-labelledby="modalTitle">
+      <form class="modal-card" id="whitelistForm" method="dialog">
+        <div class="modal-top">
+          <div>
+            <p class="modal-kicker">Whitelist</p>
+            <h2 id="modalTitle">Request access</h2>
+          </div>
+          <button class="close-button" id="closeWhitelist" type="button" aria-label="Close whitelist form">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="wallet-row">
+          <span id="walletState">Wallet disconnected</span>
+          <button class="wallet-chip modal-wallet" id="formWallet" type="button">
+            <span class="wallet-icon" aria-hidden="true"></span>
+            <span>Connect</span>
+          </button>
+        </div>
+
+        <fieldset id="whitelistFields" disabled>
+          <label>
+            Wallet
+            <input id="walletAddress" name="wallet" placeholder="Connect wallet" readonly />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" placeholder="you@domain.xyz" required />
+          </label>
+          <label>
+            X handle
+            <input name="handle" type="text" placeholder="@humanoid" required />
+          </label>
+          <label>
+            Why this wallet?
+            <textarea name="signal" rows="3" placeholder="One clean signal." required></textarea>
+          </label>
+          <button class="submit-button" id="submitRequest" type="submit" disabled>
+            Submit request
+          </button>
+        </fieldset>
+
+        <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
+      </form>
+    </dialog>
+
+    <script src="script.js"></script>
+  </body>
+</html>
