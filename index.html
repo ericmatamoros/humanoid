@@ -163,6 +163,71 @@
             </p>
           </div>
 
+          <div class="arena">
+            <div class="arena-intro">
+              <p class="agents-kicker">Live demo · Agents arena</p>
+              <h3 class="arena-title">Put an agent to work</h3>
+              <p class="arena-sub">
+                Pick an agent, hand it a job, and watch it run its skill in
+                real time — then act on what it finds.
+              </p>
+            </div>
+
+            <div class="arena-shell">
+              <aside class="arena-roster" role="tablist" aria-label="Choose an agent">
+                <button class="roster-item is-active" data-agent="scout" role="tab" type="button" aria-selected="true">
+                  <span class="roster-avatar" aria-hidden="true">$</span>
+                  <span class="roster-meta">
+                    <span class="roster-name">Money Scout</span>
+                    <span class="roster-role">Ecommerce hunter</span>
+                  </span>
+                </button>
+                <button class="roster-item" data-agent="signal" role="tab" type="button" aria-selected="false">
+                  <span class="roster-avatar" aria-hidden="true">≈</span>
+                  <span class="roster-meta">
+                    <span class="roster-name">Signal</span>
+                    <span class="roster-role">Signal filter</span>
+                  </span>
+                </button>
+                <button class="roster-item" data-agent="medic" role="tab" type="button" aria-selected="false">
+                  <span class="roster-avatar" aria-hidden="true">+</span>
+                  <span class="roster-meta">
+                    <span class="roster-name">Medic</span>
+                    <span class="roster-role">Risk guard</span>
+                  </span>
+                </button>
+                <button class="roster-item" data-agent="cartographer" role="tab" type="button" aria-selected="false">
+                  <span class="roster-avatar" aria-hidden="true">◆</span>
+                  <span class="roster-meta">
+                    <span class="roster-name">Cartographer</span>
+                    <span class="roster-role">Route mapper</span>
+                  </span>
+                </button>
+              </aside>
+
+              <div class="arena-console">
+                <div class="console-bar">
+                  <span class="console-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="console-title" id="consoleTitle">money-scout · session #4417</span>
+                  <span class="console-status" id="consoleStatus" data-state="idle">IDLE</span>
+                </div>
+                <div class="console-progress" aria-hidden="true"><span id="consoleBar"></span></div>
+                <div class="console-task">
+                  <span class="task-label">TASK</span>
+                  <p id="consoleTask">
+                    Scout the internet for a profitable ecommerce product I can
+                    launch this quarter.
+                  </p>
+                </div>
+                <div class="console-screen" id="arenaLog" role="log" aria-live="polite" aria-label="Agent activity"></div>
+                <div class="console-foot">
+                  <span class="console-skill" id="consoleSkill">SKILL · MARKET_RECON</span>
+                  <button class="run-button" id="runAgent" type="button">Run agent</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <ol class="flow" aria-label="How a Humanoid agent works">
             <li class="flow-node flow-node--seed">
               <span class="flow-tag">01 · You own</span>
