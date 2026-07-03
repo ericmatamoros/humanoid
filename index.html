@@ -23,12 +23,22 @@
           <span>Humanoid</span>
         </a>
 
+        <nav class="nav-tabs" aria-label="Sections">
+          <button class="nav-tab is-active" data-view="home" type="button" aria-selected="true">
+            Mint
+          </button>
+          <button class="nav-tab" data-view="agents" type="button" aria-selected="false">
+            Agents
+          </button>
+        </nav>
+
         <button class="wallet-chip" id="headerWallet" type="button">
           <span class="wallet-icon" aria-hidden="true"></span>
           <span>Connect</span>
         </button>
       </header>
 
+      <div class="view" id="homeView">
       <section class="hero" aria-labelledby="hero-title">
         <h1 id="hero-title">Humanoid</h1>
 
@@ -139,7 +149,129 @@
           </div>
         </div>
       </section>
+      </div>
+
+      <div class="view" id="agentsView" hidden>
+        <section class="agents" aria-labelledby="agents-title">
+          <div class="agents-head">
+            <p class="agents-kicker">The agentic layer</p>
+            <h2 id="agents-title">Every Humanoid is an agent</h2>
+            <p class="agents-lead">
+              Each NFT ships with a distinct personality — a Medic, a Signal, a
+              Cartographer. Talk to it in plain language and put its skills to
+              work for you.
+            </p>
+          </div>
+
+          <ol class="flow" aria-label="How a Humanoid agent works">
+            <li class="flow-node flow-node--seed">
+              <span class="flow-tag">01 · You own</span>
+              <strong>Your Humanoid NFT</strong>
+              <p>A 1-of-3333 on-chain identity minted straight to your wallet.</p>
+            </li>
+            <li class="flow-arrow" aria-hidden="true"></li>
+            <li class="flow-node flow-node--brain">
+              <span class="flow-tag">02 · It carries</span>
+              <strong>An agentic personality</strong>
+              <p>Traits and class define how it thinks, speaks, and acts.</p>
+            </li>
+            <li class="flow-arrow" aria-hidden="true"></li>
+            <li class="flow-node flow-node--use">
+              <span class="flow-tag">03 · You direct</span>
+              <strong>Talk to it &amp; deploy it</strong>
+              <p>Chat with your agent and route its skills toward your goals.</p>
+            </li>
+          </ol>
+
+          <div class="persona-block">
+            <p class="persona-label">Pick a personality</p>
+            <div class="persona-grid">
+              <article class="persona">
+                <span class="persona-name">Vanguard</span>
+                <p>Front-line strategist — scouts opportunities and moves first.</p>
+              </article>
+              <article class="persona">
+                <span class="persona-name">Medic</span>
+                <p>Watches your risk, flags exposure, and patches mistakes.</p>
+              </article>
+              <article class="persona">
+                <span class="persona-name">Signal</span>
+                <p>Cuts the noise — filters feeds into clean, timely calls.</p>
+              </article>
+              <article class="persona">
+                <span class="persona-name">Cartographer</span>
+                <p>Maps the terrain — charts routes and surfaces hidden alpha.</p>
+              </article>
+              <article class="persona">
+                <span class="persona-name">Proxy</span>
+                <p>Acts on your behalf — automates routine on-chain moves.</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="cap-grid">
+            <article class="cap">
+              <span class="cap-icon" aria-hidden="true">💬</span>
+              <h3>Talk to it</h3>
+              <p>
+                A natural-language chat that speaks with your agent's
+                personality. Ask questions, brief it, and get answers in its
+                own voice.
+              </p>
+            </article>
+            <article class="cap">
+              <span class="cap-icon" aria-hidden="true">⚙️</span>
+              <h3>Use it for your benefit</h3>
+              <p>
+                Point its skills at your own goals — research, monitoring, and
+                on-chain actions that work for you, around the clock.
+              </p>
+            </article>
+          </div>
+        </section>
+      </div>
     </main>
+
+    <footer class="site-footer" aria-label="Site footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a class="brand" href="/" aria-label="Humanoid home">
+            <picture class="brand-logo" aria-hidden="true">
+              <source srcset="assets/humanoid-logo.webp" type="image/webp" />
+              <img src="assets/humanoid-logo.png" alt="" />
+            </picture>
+            <span>Humanoid</span>
+          </a>
+          <p>3333 humanoids with agentic traits. Your identity in a new world.</p>
+        </div>
+
+        <nav class="footer-social" aria-label="Social media">
+          <span class="footer-heading">Socials</span>
+          <div class="social-row">
+            <a class="social-link" href="https://x.com/humanoid" target="_blank" rel="noopener" aria-label="Humanoid on X">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644Z" />
+              </svg>
+            </a>
+            <a class="social-link" href="https://discord.gg/humanoid" target="_blank" rel="noopener" aria-label="Humanoid Discord">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M20.317 4.369A19.79 19.79 0 0 0 15.432 3a13.87 13.87 0 0 0-.617 1.267 18.27 18.27 0 0 0-5.487 0A13.32 13.32 0 0 0 8.708 3a19.74 19.74 0 0 0-4.885 1.37C.72 8.99-.126 13.494.29 17.933a19.9 19.9 0 0 0 6.063 3.058 14.6 14.6 0 0 0 1.298-2.108 12.9 12.9 0 0 1-2.045-.981c.172-.126.34-.257.5-.392a14.24 14.24 0 0 0 12.19 0c.163.135.33.266.5.392a12.86 12.86 0 0 1-2.05.983 14.4 14.4 0 0 0 1.299 2.107 19.84 19.84 0 0 0 6.066-3.058c.487-5.146-.833-9.61-3.79-13.565ZM8.02 15.223c-1.183 0-2.156-1.086-2.156-2.42 0-1.333.952-2.42 2.156-2.42 1.212 0 2.176 1.096 2.156 2.42 0 1.334-.952 2.42-2.156 2.42Zm7.96 0c-1.183 0-2.156-1.086-2.156-2.42 0-1.333.952-2.42 2.156-2.42 1.213 0 2.176 1.096 2.156 2.42 0 1.334-.943 2.42-2.156 2.42Z" />
+              </svg>
+            </a>
+            <a class="social-link" href="https://opensea.io/collection/humanoid" target="_blank" rel="noopener" aria-label="Humanoid on OpenSea">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0ZM5.92 12.403l.051-.081 3.123-4.884a.107.107 0 0 1 .187.014c.52 1.169.972 2.623.76 3.528-.09.373-.336.878-.614 1.343a2.3 2.3 0 0 1-.117.187.106.106 0 0 1-.088.045H6.013a.106.106 0 0 1-.093-.165Zm14.088 1.386a.109.109 0 0 1-.062.1c-.221.094-.975.44-1.288.876-.799 1.111-1.409 2.701-2.772 2.701H9.223a3.943 3.943 0 0 1-3.94-3.95v-.075c0-.055.045-.1.101-.1h3.487c.066 0 .114.06.108.125-.024.216.017.437.119.638.197.4.605.649 1.045.649h1.727v-1.348H9.183a.11.11 0 0 1-.088-.172l.063-.09c.16-.231.39-.586.617-.99.156-.273.306-.564.428-.856.024-.052.043-.107.063-.16.033-.094.067-.181.09-.267.024-.073.043-.15.062-.222.056-.24.08-.495.08-.758 0-.104-.005-.213-.014-.317-.005-.114-.02-.228-.033-.342a4.113 4.113 0 0 0-.048-.303 6.24 6.24 0 0 0-.096-.454l-.014-.06.708-.984a.108.108 0 0 1 .173.006c.144.204.567.82.99 1.717.271.574.457 1.152.53 1.492.056.264.09.542.09.827 0 .755-.19 1.4-.53 1.906h1.65c.36 0 .703-.15.955-.417l1.394-1.5a.11.11 0 0 1 .076-.033h3.462a.11.11 0 0 1 .108.128Z" />
+              </svg>
+            </a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer-bar">
+        <p>&copy; 2026 Humanoid. All rights reserved.</p>
+        <p>Built for a world where automation has a face.</p>
+      </div>
+    </footer>
 
     <dialog class="whitelist-modal" id="whitelistModal" aria-labelledby="modalTitle">
       <form class="modal-card" id="whitelistForm" method="dialog">

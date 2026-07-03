@@ -2,6 +2,34 @@ const ETH_MAINNET_CHAIN_ID = "0x1";
 const WALLET_STORAGE_KEY = "humanoid_wallet_address";
 
 const landing = document.getElementById("landing");
+const navTabs = document.querySelectorAll(".nav-tab");
+const views = {
+  home: document.getElementById("homeView"),
+  agents: document.getElementById("agentsView"),
+};
+
+function showView(name) {
+  if (!views[name]) {
+    return;
+  }
+
+  Object.entries(views).forEach(([key, view]) => {
+    view.hidden = key !== name;
+  });
+
+  navTabs.forEach((tab) => {
+    const isActive = tab.dataset.view === name;
+    tab.classList.toggle("is-active", isActive);
+    tab.setAttribute("aria-selected", isActive ? "true" : "false");
+  });
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+navTabs.forEach((tab) => {
+  tab.addEventListener("click", () => showView(tab.dataset.view));
+});
+
 const openWhitelist = document.getElementById("openWhitelist");
 const whitelistModal = document.getElementById("whitelistModal");
 const closeWhitelist = document.getElementById("closeWhitelist");
