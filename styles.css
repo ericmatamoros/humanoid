@@ -628,9 +628,15 @@ h1 {
   width: 46px;
   height: 46px;
   margin-bottom: 14px;
+  border: 1px solid rgba(255, 90, 31, 0.2);
   border-radius: 14px;
   background: rgba(255, 241, 233, 0.9);
-  font-size: 1.35rem;
+}
+
+.cap-icon svg {
+  display: block;
+  width: 24px;
+  height: 24px;
 }
 
 .cap h3 {
