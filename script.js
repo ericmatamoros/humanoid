@@ -17,6 +17,9 @@ function showView(name) {
     view.hidden = key !== name;
   });
 
+  document.body.dataset.view = name;
+  document.dispatchEvent(new CustomEvent("viewchange", { detail: name }));
+
   navTabs.forEach((tab) => {
     const isActive = tab.dataset.view === name;
     tab.classList.toggle("is-active", isActive);
@@ -91,6 +94,7 @@ function openWhitelistModal() {
 function setWalletButtons(text, connected = false) {
   walletButtons.forEach((button) => {
     button.classList.toggle("connected", connected);
+    button.classList.toggle("is-connecting", text === "Connecting");
     button.querySelector("span:last-child").textContent = text;
     if (connected) {
       button.setAttribute("aria-label", `Connected wallet ${text} on Ethereum mainnet`);
@@ -277,6 +281,8 @@ whitelistForm.addEventListener("submit", (event) => {
   const entry = Object.fromEntries(formData.entries());
   entry.chainId = ETH_MAINNET_CHAIN_ID;
   submitRequest.disabled = true;
+  submitRequest.classList.add("is-loading");
+  formMessage.classList.remove("is-success");
   setMessage("Submitting to whitelist...");
 
   fetch("/api/whitelist", {
@@ -294,12 +300,15 @@ whitelistForm.addEventListener("submit", (event) => {
     .then(() => {
       whitelistForm.reset();
       walletAddress.value = connectedWallet;
+      formMessage.classList.add("is-success");
       setMessage("Request received. Your ETH wallet is queued.");
     })
     .catch((error) => {
+      formMessage.classList.remove("is-success");
       setMessage(error.message || "Whitelist submission failed. Please try again.");
     })
     .finally(() => {
+      submitRequest.classList.remove("is-loading");
       submitRequest.disabled = !connectedWallet;
     });
 });
@@ -487,9 +496,51 @@ const rosterItems = document.querySelectorAll(".roster-item");
 if (arenaLog && runButton) {
   let currentAgent = "scout";
   let runToken = 0;
+  let typeToken = 0;
 
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const randomSession = () => `#${4000 + Math.floor(Math.random() * 900)}`;
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function typeInto(el, text) {
+    const token = (typeToken += 1);
+    if (prefersReduced) {
+      el.textContent = text;
+      return;
+    }
+    el.textContent = "";
+    let i = 0;
+    const tick = () => {
+      if (token !== typeToken) {
+        return;
+      }
+      el.textContent = text.slice(0, i);
+      if (i <= text.length) {
+        i += 1;
+        setTimeout(tick, 14);
+      }
+    };
+    tick();
+  }
+
+  function countUpText(el, target, suffix) {
+    if (prefersReduced) {
+      el.textContent = `${target}${suffix}`;
+      return;
+    }
+    const duration = 900;
+    let start = null;
+    const step = (ts) => {
+      if (start === null) start = ts;
+      const p = Math.min((ts - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = `${Math.round(eased * target)}${suffix}`;
+      if (p < 1) {
+        requestAnimationFrame(step);
+      }
+    };
+    requestAnimationFrame(step);
+  }
 
   function clock(ms) {
     const totalSeconds = Math.floor(ms / 1000);
@@ -560,7 +611,7 @@ if (arenaLog && runButton) {
       .join("");
 
     card.innerHTML =
-      `<div class="op-top"><span class="op-badge">${result.badge}</span><span class="op-conf">${result.confidence}% confidence</span></div>` +
+      `<div class="op-top"><span class="op-badge">${result.badge}</span><span class="op-conf">0% confidence</span></div>` +
       `<h4 class="op-title">${result.title}</h4>` +
       `<div class="op-metrics">${metrics}</div>` +
       (result.note ? `<p class="op-note">${result.note}</p>` : "") +
@@ -570,6 +621,12 @@ if (arenaLog && runButton) {
       `</div>`;
 
     arenaLog.appendChild(card);
+    card.classList.add("is-complete");
+
+    const conf = card.querySelector(".op-conf");
+    if (conf) {
+      countUpText(conf, result.confidence, "% confidence");
+    }
 
     const deploy = card.querySelector(".op-deploy");
     deploy.addEventListener("click", () => {
@@ -596,7 +653,7 @@ if (arenaLog && runButton) {
     });
 
     consoleTitle.textContent = `${agent.id} · session ${randomSession()}`;
-    consoleTask.textContent = agent.task;
+    typeInto(consoleTask, agent.task);
     consoleSkill.textContent = `SKILL · ${agent.skill}`;
     consoleBar.style.width = "0%";
     setStatus("idle", "IDLE");
@@ -666,5 +723,18 @@ if (arenaLog && runButton) {
   runButton.addEventListener("click", runAgent);
   selectAgent("scout");
 }
+
+// ---- FAQ accordion (exclusive open) ----
+document.querySelectorAll(".faq-item").forEach((item) => {
+  item.addEventListener("toggle", () => {
+    if (item.open) {
+      document.querySelectorAll(".faq-item[open]").forEach((other) => {
+        if (other !== item) {
+          other.open = false;
+        }
+      });
+    }
+  });
+});
 
 restoreWallet();
