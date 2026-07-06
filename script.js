@@ -88,8 +88,15 @@ function setMessage(message) {
 function openWhitelistModal() {
   if (!whitelistModal.open) {
     whitelistModal.showModal();
+    // The dialog paints in the top layer (above the custom cursor), so hand
+    // control back to the native cursor while it is open.
+    document.body.classList.add("modal-open");
   }
 }
+
+whitelistModal.addEventListener("close", () => {
+  document.body.classList.remove("modal-open");
+});
 
 function setWalletButtons(text, connected = false) {
   walletButtons.forEach((button) => {

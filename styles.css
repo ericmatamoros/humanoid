@@ -1149,17 +1149,22 @@ h1 {
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
   background: var(--dark);
-  color: var(--bg);
-  font-size: 1.05rem;
-  font-weight: 700;
+  box-shadow: inset 0 0 0 1px rgba(9, 11, 11, 0.08);
+}
+
+.roster-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .roster-item.is-active .roster-avatar {
-  background: var(--accent);
-  color: var(--dark);
+  box-shadow: inset 0 0 0 1px var(--accent);
 }
 
 .roster-meta {
@@ -2247,6 +2252,24 @@ body.has-cursor a,
 body.has-cursor button,
 body.has-cursor .carousel-card {
   cursor: none;
+}
+
+/* Whitelist dialog opens in the top layer, above the custom cursor. Hide the
+   custom cursor and restore the native one so it stays visible on the modal. */
+body.has-cursor.modal-open .cursor {
+  opacity: 0;
+}
+
+body.has-cursor.modal-open,
+body.has-cursor.modal-open input,
+body.has-cursor.modal-open textarea {
+  cursor: auto;
+}
+
+body.has-cursor.modal-open a,
+body.has-cursor.modal-open button,
+body.has-cursor.modal-open .carousel-card {
+  cursor: pointer;
 }
 
 .cursor-dot,
