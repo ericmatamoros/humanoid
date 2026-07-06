@@ -1023,6 +1023,39 @@ h1 {
   line-height: 1.55;
 }
 
+.persona-more {
+  display: flex;
+  flex-direction: column;
+  border-style: dashed;
+  border-color: var(--accent);
+  background: var(--accent-soft, rgba(255, 113, 32, 0.08));
+}
+
+.persona-more .index-num {
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.persona-more .persona-name {
+  color: var(--accent);
+}
+
+.persona-more-cue {
+  margin-top: auto;
+  padding-top: 14px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.persona-more:hover .persona-more-cue {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .cap-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
