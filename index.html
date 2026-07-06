@@ -11,9 +11,53 @@
     <link rel="icon" type="image/svg+xml" href="assets/humanoid-logo.svg" />
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Space+Mono:wght@400;700&display=swap"
+    />
+
     <link rel="stylesheet" href="styles.css" />
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+          "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js",
+          "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger.js",
+          "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.mjs"
+        }
+      }
+    </script>
+
+    <script>
+      // Failsafe: never let the preloader trap the page if a CDN module fails.
+      window.addEventListener("load", () => {
+        setTimeout(() => document.documentElement.classList.add("is-ready"), 2600);
+      });
+    </script>
   </head>
-  <body>
+  <body data-view="home">
+    <div class="preloader" id="preloader" aria-hidden="true">
+      <div class="preloader-inner">
+        <div class="preloader-mark" data-glitch="Humanoid">Humanoid</div>
+        <div class="preloader-bar"><span id="preloaderFill"></span></div>
+        <div class="preloader-meta">
+          <span class="preloader-status">Initializing agents</span>
+          <span class="preloader-count" id="preloaderCount">0%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor" id="cursor" aria-hidden="true">
+      <span class="cursor-dot"></span>
+      <span class="cursor-ring"></span>
+    </div>
+
     <main class="landing" id="landing">
       <header class="topbar" aria-label="Primary">
         <a class="brand" href="/" aria-label="Humanoid home">
@@ -40,38 +84,75 @@
 
       <div class="view" id="homeView">
       <section class="hero" aria-labelledby="hero-title">
-        <h1 id="hero-title">Humanoid</h1>
+        <div class="hero-fx" aria-hidden="true">
+          <canvas class="hero-canvas" id="heroCanvas"></canvas>
+          <div class="hero-grid"></div>
+          <div class="hero-halo"></div>
+        </div>
+
+        <h1 id="hero-title" class="hero-title" data-splittext data-drift>Humanoid</h1>
 
         <div class="hero-art" aria-hidden="true">
           <picture>
-            <source srcset="assets/humanoid-black-visor.webp" type="image/webp" />
-            <img src="assets/humanoid-black-visor.png" alt="" fetchpriority="high" />
+            <source srcset="assets/humanoid-hero.webp" type="image/webp" />
+            <img src="assets/humanoid-hero.png" alt="" fetchpriority="high" />
           </picture>
         </div>
 
-        <div class="hero-panel">
-          <p>
+        <div class="hero-panel corner-brackets" data-reveal-group>
+          <p class="section-label" data-reveal>
+            Whitelist<span class="sub">Agentic identity drop</span><span class="idx">/01</span>
+          </p>
+          <p data-reveal>
             3333 humanoids with agentic traits coming to build a world where
             surrender is quiet and automation has a face.
           </p>
 
-          <div class="mint-line" aria-label="Mint details">
-            <span>Supply 3333</span>
+          <div class="mint-line" aria-label="Mint details" data-reveal>
+            <span><span class="count" data-count="3333">3333</span>&nbsp;Supply</span>
             <span>Mint TBD</span>
             <span>ETH chain</span>
           </div>
 
-          <button class="whitelist-button" id="openWhitelist" type="button">
+          <button class="whitelist-button btn-clip magnetic" id="openWhitelist" type="button" data-reveal>
             Join whitelist
             <img src="assets/arrow-orbit.svg" alt="" aria-hidden="true" />
           </button>
         </div>
+
+        <a class="scroll-cue" href="#firstArrivals" aria-label="Scroll to previews">
+          <span>Scroll</span>
+          <span class="scroll-cue-line" aria-hidden="true"></span>
+        </a>
       </section>
 
-      <section class="art-carousel" aria-label="Humanoid art previews">
-        <div class="carousel-header">
-          <p>First arrivals</p>
-          <span>Agentic traits revealed by rarity</span>
+      <div class="hero-transition" aria-hidden="true"></div>
+
+      <section class="stats-strip" id="stats" aria-label="Collection stats" data-reveal-group>
+        <div class="stat-cell" data-reveal>
+          <span class="stat-label">Supply</span>
+          <span class="stat-value" data-count="3333">3333</span>
+        </div>
+        <div class="stat-cell" data-reveal>
+          <span class="stat-label">Chain</span>
+          <span class="stat-value">ETH</span>
+        </div>
+        <div class="stat-cell" data-reveal>
+          <span class="stat-label">Mint</span>
+          <span class="stat-value">TBD</span>
+        </div>
+        <div class="stat-cell" data-reveal>
+          <span class="stat-label">Whitelist</span>
+          <span class="stat-value">Open</span>
+        </div>
+      </section>
+
+      <section class="art-carousel" id="firstArrivals" aria-label="Humanoid art previews">
+        <div class="carousel-header" data-reveal-group>
+          <p class="section-label" data-reveal>
+            Gallery<span class="sub">Agentic traits revealed by rarity</span><span class="idx">/03</span>
+          </p>
+          <p class="carousel-title" data-reveal data-drift>First arrivals</p>
         </div>
 
         <div class="carousel-window">
@@ -149,25 +230,95 @@
           </div>
         </div>
       </section>
+
+      <section class="faq" id="faq" aria-labelledby="faq-title">
+        <div class="faq-head" data-reveal-group>
+          <p class="section-label" data-reveal>
+            FAQ<span class="sub">Mint &amp; whitelist</span><span class="idx">/04</span>
+          </p>
+          <h2 id="faq-title" class="faq-title" data-reveal data-drift>Questions</h2>
+        </div>
+
+        <div class="faq-list" data-reveal-group>
+          <details class="faq-item" data-reveal>
+            <summary>
+              <span class="faq-num">01</span>
+              What is Humanoid?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <p>
+              Humanoid is a 3,333 supply NFT collection of agentic humanoids on
+              Ethereum. Every token carries a distinct personality — an agent
+              you can talk to and put to work.
+            </p>
+          </details>
+          <details class="faq-item" data-reveal>
+            <summary>
+              <span class="faq-num">02</span>
+              How do I join the whitelist?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <p>
+              Connect a MetaMask wallet on Ethereum mainnet, then submit the
+              whitelist form with your email and X handle. Approved wallets are
+              queued for the allowlist phase of the mint.
+            </p>
+          </details>
+          <details class="faq-item" data-reveal>
+            <summary>
+              <span class="faq-num">03</span>
+              When is the mint?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <p>
+              The mint date is TBD. Follow the collection on X and Discord —
+              whitelisted wallets are notified first when the window opens.
+            </p>
+          </details>
+          <details class="faq-item" data-reveal>
+            <summary>
+              <span class="faq-num">04</span>
+              Which chain and what price?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <p>
+              Humanoid mints on Ethereum mainnet. Mint price is announced ahead
+              of the mint window; whitelist spots do not require any payment.
+            </p>
+          </details>
+          <details class="faq-item" data-reveal>
+            <summary>
+              <span class="faq-num">05</span>
+              What do holders get?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <p>
+              A 1-of-3,333 on-chain identity with an agentic personality. Chat
+              with your Humanoid in plain language and route its skills —
+              research, monitoring, on-chain actions — toward your own goals.
+            </p>
+          </details>
+        </div>
+      </section>
       </div>
 
       <div class="view" id="agentsView" hidden>
         <section class="agents" aria-labelledby="agents-title">
-          <div class="agents-head">
-            <p class="agents-kicker">The agentic layer</p>
-            <h2 id="agents-title">Every Humanoid is an agent</h2>
-            <p class="agents-lead">
+          <div class="agents-head" data-reveal-group>
+            <p class="agents-kicker" data-reveal>The agentic layer</p>
+            <h2 id="agents-title" data-reveal data-drift>Every Humanoid is an agent</h2>
+            <p class="agents-lead" data-reveal>
               Each NFT ships with a distinct personality — a Medic, a Signal, a
               Cartographer. Talk to it in plain language and put its skills to
               work for you.
             </p>
           </div>
 
-          <div class="arena">
+          <div class="arena" data-reveal-group>
             <div class="arena-intro">
-              <p class="agents-kicker">Live demo · Agents arena</p>
-              <h3 class="arena-title">Put an agent to work</h3>
-              <p class="arena-sub">
+              <p class="agents-kicker" data-reveal>Live demo · Agents arena</p>
+              <h3 class="arena-title" data-reveal>Put an agent to work</h3>
+              <p class="arena-sub" data-reveal>
                 Pick an agent, hand it a job, and watch it run its skill in
                 real time — then act on what it finds.
               </p>
@@ -222,71 +373,76 @@
                 <div class="console-screen" id="arenaLog" role="log" aria-live="polite" aria-label="Agent activity"></div>
                 <div class="console-foot">
                   <span class="console-skill" id="consoleSkill">SKILL · MARKET_RECON</span>
-                  <button class="run-button" id="runAgent" type="button">Run agent</button>
+                  <button class="run-button magnetic" id="runAgent" type="button">Run agent</button>
                 </div>
               </div>
             </div>
           </div>
 
-          <ol class="flow" aria-label="How a Humanoid agent works">
-            <li class="flow-node flow-node--seed">
+          <ol class="flow" aria-label="How a Humanoid agent works" data-reveal-group>
+            <li class="flow-node flow-node--seed" data-reveal>
               <span class="flow-tag">01 · You own</span>
               <strong>Your Humanoid NFT</strong>
               <p>A 1-of-3333 on-chain identity minted straight to your wallet.</p>
             </li>
-            <li class="flow-arrow" aria-hidden="true"></li>
-            <li class="flow-node flow-node--brain">
+            <li class="flow-arrow" aria-hidden="true" data-reveal></li>
+            <li class="flow-node flow-node--brain" data-reveal>
               <span class="flow-tag">02 · It carries</span>
               <strong>An agentic personality</strong>
               <p>Traits and class define how it thinks, speaks, and acts.</p>
             </li>
-            <li class="flow-arrow" aria-hidden="true"></li>
-            <li class="flow-node flow-node--use">
+            <li class="flow-arrow" aria-hidden="true" data-reveal></li>
+            <li class="flow-node flow-node--use" data-reveal>
               <span class="flow-tag">03 · You direct</span>
               <strong>Talk to it &amp; deploy it</strong>
               <p>Chat with your agent and route its skills toward your goals.</p>
             </li>
           </ol>
 
-          <div class="persona-block">
-            <p class="persona-label">Pick a personality</p>
+          <div class="persona-block" data-reveal-group>
+            <p class="persona-label" data-reveal>Pick a personality</p>
             <div class="persona-grid">
-              <article class="persona">
+              <article class="persona" data-reveal data-tilt>
+                <span class="index-num" aria-hidden="true">01</span>
                 <span class="persona-name">Vanguard</span>
                 <p>Front-line strategist — scouts opportunities and moves first.</p>
               </article>
-              <article class="persona">
+              <article class="persona" data-reveal data-tilt>
+                <span class="index-num" aria-hidden="true">02</span>
                 <span class="persona-name">Medic</span>
                 <p>Watches your risk, flags exposure, and patches mistakes.</p>
               </article>
-              <article class="persona">
+              <article class="persona" data-reveal data-tilt>
+                <span class="index-num" aria-hidden="true">03</span>
                 <span class="persona-name">Signal</span>
                 <p>Cuts the noise — filters feeds into clean, timely calls.</p>
               </article>
-              <article class="persona">
+              <article class="persona" data-reveal data-tilt>
+                <span class="index-num" aria-hidden="true">04</span>
                 <span class="persona-name">Cartographer</span>
                 <p>Maps the terrain — charts routes and surfaces hidden alpha.</p>
               </article>
-              <article class="persona">
+              <article class="persona" data-reveal data-tilt>
+                <span class="index-num" aria-hidden="true">05</span>
                 <span class="persona-name">Proxy</span>
                 <p>Acts on your behalf — automates routine on-chain moves.</p>
               </article>
             </div>
           </div>
 
-          <div class="cap-grid">
-            <article class="cap">
+          <div class="cap-grid" data-reveal-group>
+            <article class="cap" data-reveal data-tilt>
               <span class="cap-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" focusable="false">
                   <path
                     d="M6 5h12a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3h-7l-4 3.5V16H6a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3Z"
-                    stroke="#0b0d0d"
+                    stroke="#0E0E0E"
                     stroke-width="1.7"
                     stroke-linejoin="round"
                   />
-                  <circle cx="8.5" cy="10.5" r="1.15" fill="#0b0d0d" />
-                  <circle cx="12" cy="10.5" r="1.15" fill="#ff5a1f" />
-                  <circle cx="15.5" cy="10.5" r="1.15" fill="#0b0d0d" />
+                  <circle cx="8.5" cy="10.5" r="1.15" fill="#0E0E0E" />
+                  <circle cx="12" cy="10.5" r="1.15" fill="#FF7120" />
+                  <circle cx="15.5" cy="10.5" r="1.15" fill="#0E0E0E" />
                 </svg>
               </span>
               <h3>Talk to it</h3>
@@ -296,12 +452,12 @@
                 own voice.
               </p>
             </article>
-            <article class="cap">
+            <article class="cap" data-reveal data-tilt>
               <span class="cap-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" focusable="false">
-                  <circle cx="12" cy="12" r="8.4" stroke="#0b0d0d" stroke-width="1.7" />
-                  <circle cx="12" cy="12" r="4.2" stroke="#0b0d0d" stroke-width="1.7" />
-                  <circle cx="12" cy="12" r="1.7" fill="#ff5a1f" />
+                  <circle cx="12" cy="12" r="8.4" stroke="#0E0E0E" stroke-width="1.7" />
+                  <circle cx="12" cy="12" r="4.2" stroke="#0E0E0E" stroke-width="1.7" />
+                  <circle cx="12" cy="12" r="1.7" fill="#FF7120" />
                 </svg>
               </span>
               <h3>Use it for your benefit</h3>
@@ -326,6 +482,15 @@
           </a>
           <p>3333 humanoids with agentic traits. Your identity in a new world.</p>
         </div>
+
+        <nav class="footer-links-col" aria-label="Site index">
+          <span class="footer-heading">Index</span>
+          <div class="footer-links">
+            <a href="#stats">Stats</a>
+            <a href="#firstArrivals">First arrivals</a>
+            <a href="#faq">FAQ</a>
+          </div>
+        </nav>
 
         <nav class="footer-social" aria-label="Social media">
           <span class="footer-heading">Socials</span>
@@ -352,6 +517,10 @@
       <div class="footer-bar">
         <p>&copy; 2026 Humanoid. All rights reserved.</p>
         <p>Built for a world where automation has a face.</p>
+      </div>
+
+      <div class="footer-wordmark" aria-hidden="true">
+        <span data-drift-right>Humanoid</span>
       </div>
     </footer>
 
@@ -402,5 +571,7 @@
     </dialog>
 
     <script src="script.js"></script>
+    <script type="module" src="hero.js"></script>
+    <script type="module" src="motion.js"></script>
   </body>
 </html>

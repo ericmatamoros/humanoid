@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node --check script.js && node --check api/whitelist.js && rm -rf public && mkdir -p public && cp index.html styles.css script.js public/ && cp -R assets public/assets",
+    "build": "node --check script.js && node --check api/whitelist.js && rm -rf public && mkdir -p public && cp index.html styles.css script.js hero.js motion.js public/ && cp -R assets public/assets",
     "dev": "vercel dev"
   },
   "dependencies": {
